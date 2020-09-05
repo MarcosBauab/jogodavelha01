@@ -7,18 +7,20 @@ var jogador1 = document.getElementById("tex1")
 var jogador2 = document.getElementById("tex2")
 
 botao.addEventListener("click", function clicar(){
-    
     jogador1 = String(jogador1.value)
     jogador2 = String(jogador2.value)
+    if((jogador1 != "undefined" && jogador2 != "undefined")&& (jogador1 != "" && jogador2 != "")){
+        
+        var left = document.getElementById('left')
+        jog1.innerHTML = `${jogador1}: ▶️  <br> ${jogador2}:   `
 
-    
-    var left = document.getElementById('left')
-
-    jog1.innerHTML = `${jogador1}: ▶️  <br> ${jogador2}:   `
-    
-
-    left.appendChild(jog1)
-    gameover = false
+        left.appendChild(jog1)
+        gameover = false
+    } else {
+        alert('Insira nomes!')
+        jogador1 = ""
+        jogador2 = ""
+    }
 })
 
 for (let quadrado of quadrados){
@@ -78,6 +80,7 @@ for (let quadrado of quadrados){
         gameover=true
         await espera(50)
         alert("Velha!")
+        window.location.reload()
     }
 
     if (vencedor != ""){
@@ -86,8 +89,10 @@ for (let quadrado of quadrados){
         await espera(50)
         if ( vencedor == 1 ){
             alert(`${jogador1} venceu!`)
+            window.location.reload()
         } else if (vencedor == 2){
             alert(`${jogador2} venceu!`)
+            window.location.reload()
         } 
     }
     
